@@ -1,5 +1,5 @@
 {
-  "name": "sharp",
+  "name": "sharpkit",
   "description": "High performance Node.js image processing, the fastest module to resize JPEG, PNG, WebP and TIFF images",
   "version": "0.20.2",
   "author": "Lovell Fuller <npm@lovell.info>",
@@ -61,7 +61,7 @@
   "main": "lib/index.js",
   "repository": {
     "type": "git",
-    "url": "git://github.com/lovell/sharp"
+    "url": "git://github.com/wybosys/sharpkit"
   },
   "keywords": [
     "jpeg",
