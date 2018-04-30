@@ -1,7 +1,7 @@
 {
   "name": "sharpkit",
   "description": "继承于sharp，将libvips置于七牛云并增加TS定义",
-  "version": "0.20.2.1",
+  "version": "10.20.2",
   "author": "wybo",
   "homepage": "https://github.com/wybosys/sharpkit",
   "contributors": [
