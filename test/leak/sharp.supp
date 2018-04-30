@@ -1,0 +1,446 @@
+# libjpeg warnings
+{
+  cond_jpeg_read_scanlines
+  Memcheck:Cond
+  ...
+  fun:jpeg_read_scanlines
+}
+{
+  value_jpeg_read_scanlines
+  Memcheck:Value8
+  ...
+  fun:jpeg_read_scanlines
+}
+{
+  cond_jpeg_write_scanlines
+  Memcheck:Cond
+  ...
+  fun:jpeg_write_scanlines
+}
+{
+  cond_jpeg_finish_compress
+  Memcheck:Cond
+  ...
+  fun:jpeg_finish_compress
+}
+{
+  value_jpeg_finish_compress
+  Memcheck:Value8
+  ...
+  fun:jpeg_finish_compress
+}
+{
+  value_jpeg_obj
+  Memcheck:Value8
+  obj:*/libjpeg.so*
+}
+{
+  cond_jpeg_obj
+  Memcheck:Cond
+  obj:*/libjpeg.so*
+}
+{
+  param_jpeg_jpeg_finish_compress
+  Memcheck:Param
+  write(buf)
+  ...
+  fun:jpeg_finish_compress
+}
+# libpng
+{
+  cond_libpng_png_read_row
+  Memcheck:Cond
+  ...
+  fun:png_read_row
+}
+{
+  value_libpng_png_read_row
+  Memcheck:Value8
+  ...
+  fun:png_read_row
+}
+{
+  cond_libpng_png_write_rows
+  Memcheck:Cond
+  ...
+  fun:png_write_row
+  fun:png_write_rows
+}
+{
+  value_libpng_png_write_rows
+  Memcheck:Value8
+  ...
+  fun:png_write_row
+  fun:png_write_rows
+}
+
+# libwebp
+{
+  cond_libwebp_WebPEncodeRGBA
+  Memcheck:Cond
+  ...
+  fun:WebPEncodeRGBA
+}
+{
+  value_libwebp_WebPEncodeRGBA
+  Memcheck:Value8
+  ...
+  fun:WebPEncodeRGBA
+}
+{
+  cond_libwebp_WebPEncodeRGB
+  Memcheck:Cond
+  ...
+  fun:WebPEncodeRGB
+}
+{
+  value_libwebp_WebPEncodeRGB
+  Memcheck:Value8
+  ...
+  fun:WebPEncodeRGB
+}
+{
+  value_libwebp_WebPEncode
+  Memcheck:Value8
+  ...
+  fun:WebPEncode
+}
+{
+  cond_libwebp_WebPEncode
+  Memcheck:Cond
+  ...
+  fun:WebPEncode
+}
+{
+  value_libwebp_WebPPictureImportRGBA
+  Memcheck:Value8
+  ...
+  fun:WebPPictureImportRGBA
+}
+{
+  cond_libwebp_WebPPictureImportRGBA
+  Memcheck:Cond
+  ...
+  fun:WebPPictureImportRGBA
+}
+{
+  value_libwebp_WebPPictureImportRGB
+  Memcheck:Value8
+  ...
+  fun:WebPPictureImportRGB
+}
+{
+  cond_libwebp_WebPPictureImportRGB
+  Memcheck:Cond
+  ...
+  fun:WebPPictureImportRGB
+}
+{
+  value_libwebp_WebPDecode
+  Memcheck:Value8
+  ...
+  fun:WebPDecode
+}
+{
+  cond_libwebp_WebPDecode
+  Memcheck:Cond
+  ...
+  fun:WebPDecode
+}
+
+# libvips
+{
+  cond_libvips_interpolate_lbb
+  Memcheck:Cond
+  ...
+  fun:_ZL32vips_interpolate_lbb_interpolateP16_VipsInterpolatePvP11_VipsRegiondd
+  fun:vips_affine_gen
+}
+{
+  cond_libvips_conv_gen
+  Memcheck:Cond
+  fun:conv_gen
+  fun:vips_region_generate
+}
+{
+  value_libvips_col_sRGB2scRGB_8
+  Memcheck:Value8
+  fun:vips_col_sRGB2scRGB_8
+}
+{
+  value_libvips_col_sRGB2scRGB_line_8
+  Memcheck:Value8
+  fun:vips_sRGB2scRGB_line_8
+}
+{
+  value_libvips_write_webp
+  Memcheck:Value8
+  ...
+  fun:write_webp.constprop.1
+  fun:vips__webp_write_buffer
+}
+{
+  cond_libvips_vips_cast_gen
+  Memcheck:Cond
+  fun:vips_cast_gen
+}
+{
+  cond_libvips_vips_region_fill
+  Memcheck:Cond
+  ...
+  fun:vips_region_fill
+  fun:vips_region_prepare
+}
+{
+  cond_libvips_vips_region_prepare_to
+  Memcheck:Cond
+  ...
+  fun:vips_region_prepare_to
+}
+{
+  value_libvips_vips_region_fill
+  Memcheck:Value8
+  ...
+  fun:vips_region_fill
+  fun:vips_region_prepare
+}
+{
+  leak_libvips_init
+  Memcheck:Leak
+  match-leak-kinds: reachable
+  fun:malloc
+  ...
+  fun:vips__init
+}
+
+# libuv warnings
+{
+  free_libuv
+  Memcheck:Free
+  ...
+  fun:uv__work_done
+}
+{
+  param_libuv_fs_work
+  Memcheck:Param
+  write(buf)
+  ...
+  fun:uv__fs_work
+}
+{
+  cond_libuv_work_done
+  Memcheck:Cond
+  ...
+  fun:uv__work_done
+}
+
+# nodejs warnings
+{
+  param_nodejs_write_buffer
+  Memcheck:Param
+  write(buf)
+  ...
+  obj:/usr/bin/nodejs
+}
+{
+  param_iojs_write_buffer
+  Memcheck:Param
+  write(buf)
+  ...
+  obj:/usr/bin/iojs
+}
+{
+  leak_nodejs_ImmutableAsciiSource_CreateFromLiteral
+  Memcheck:Leak
+  match-leak-kinds: definite
+  ...
+  fun:_ZN4node20ImmutableAsciiSource17CreateFromLiteralEPKcm
+}
+{
+  leak_nodejs_Buffer_New
+  Memcheck:Leak
+  match-leak-kinds: definite
+  ...
+  fun:_ZN4node6Buffer3NewERKN2v89ArgumentsE
+}
+{
+  leak_nodejs_Buffer_Replace
+   Memcheck:Leak
+   match-leak-kinds: indirect,possible
+   ...
+   fun:_ZN4node6Buffer7ReplaceEPcmPFvS1_PvES2_
+}
+{
+  leak_nodejs_SignalWrap_New
+  Memcheck:Leak
+  match-leak-kinds: possible
+  ...
+  fun:_ZN4node10SignalWrap3NewERKN2v89ArgumentsE
+}
+{
+  leak_nodejs_TTYWrap_New
+  Memcheck:Leak
+  match-leak-kinds: possible
+  ...
+  fun:_ZN4node7TTYWrap3NewERKN2v89ArgumentsE
+}
+{
+  leak_nodejs_ares_init_options
+  Memcheck:Leak
+  match-leak-kinds: reachable
+  fun:malloc
+  fun:strdup
+  ...
+  fun:ares_init_options
+}
+{
+  leak_nodejs_CreateEnvironment_Handle
+  Memcheck:Leak
+  match-leak-kinds: possible
+  ...
+  fun:_ZN4node17CreateEnvironmentEPN2v87IsolateEP9uv_loop_sNS0_6HandleINS0_7ContextEEEiPKPKciSB_
+}
+{
+  leak_nodejs_CreateEnvironment_Local
+  Memcheck:Leak
+  match-leak-kinds: possible
+  ...
+  fun:_ZN4node17CreateEnvironmentEPN2v87IsolateEP9uv_loop_sNS0_5LocalINS0_7ContextEEEiPKPKciSB_
+}
+{
+  leak_nodejs_Environment_Start
+  Memcheck:Leak
+  match-leak-kinds: possible
+  ...
+  fun:_ZN4node11Environment5StartEiPKPKciS4_b
+}
+{
+  leak_nodejs_node9inspector5Agent5Start
+  Memcheck:Leak
+  match-leak-kinds: possible
+  ...
+  fun:_ZN4node9inspector5Agent5StartEPN2v88PlatformEPKcRKNS_12DebugOptionsE
+}
+{
+  leak_nodejs_node9inspector5Agent5Start_NodePlatform
+  Memcheck:Leak
+  match-leak-kinds: possible
+  ...
+  fun:_ZN4node9inspector5Agent5StartEPNS_12NodePlatformEPKcRKNS_12DebugOptionsE
+}
+{
+  leak_nodejs_node12NodePlatform_TracingController
+  Memcheck:Leak
+  match-leak-kinds: possible
+  ...
+  fun:_ZN4node12NodePlatformC1EiP9uv_loop_sPN2v817TracingControllerE
+}
+{
+  leak_nodejs_node11performance24MarkGarbageCollectionEnd
+  Memcheck:Leak
+  match-leak-kinds: possible
+  ...
+  fun:_ZN4node11performance24MarkGarbageCollectionEndEPN2v87IsolateENS1_6GCTypeENS1_15GCCallbackFlagsEPv
+}
+{
+  leak_nodejs_icu_getAvailableLocales
+  Memcheck:Leak
+  match-leak-kinds: possible
+  ...
+  fun:_ZN6icu_568Collator19getAvailableLocalesERi
+}
+{
+  leak_nodejs_thread_start
+  Memcheck:Leak
+  match-leak-kinds: possible
+  fun:calloc
+  fun:allocate_dtv
+  fun:_dl_allocate_tls
+  fun:allocate_stack
+  ...
+  fun:_ZN2v84base6Thread5StartEv
+}
+{
+  leak_nan_FunctionCallbackInfo
+  Memcheck:Leak
+  match-leak-kinds: definite
+  ...
+  fun:_ZN3Nan3impL23FunctionCallbackWrapperERKN2v820FunctionCallbackInfoINS1_5ValueEEE
+}
+{
+  leak_v8_FunctionCallbackInfo
+  Memcheck:Leak
+  match-leak-kinds: possible
+  ...
+  fun:_ZN2v88internal25FunctionCallbackArguments4CallEPFvRKNS_20FunctionCallbackInfoINS_5ValueEEEE
+}
+{
+  leak_v8_CallInterfaceDescriptorData
+  Memcheck:Leak
+  match-leak-kinds: possible
+  ...
+  fun:_ZN2v88internal27CallInterfaceDescriptorData10InitializeEiPNS0_8RegisterEPNS0_14RepresentationEPNS0_27PlatformInterfaceDescriptorE
+}
+{
+  leak_v8_Isolate_Init
+  Memcheck:Leak
+  match-leak-kinds: possible
+  ...
+  fun:_ZN2v88internal7Isolate4InitEPNS0_12DeserializerE
+}
+{
+  leak_v8_StoreDescriptor_Initialize
+  Memcheck:Leak
+  match-leak-kinds: possible
+  ...
+  fun:_ZN2v88internal15StoreDescriptor10InitializeEPNS0_27CallInterfaceDescriptorDataE
+}
+{
+  leak_v8_CodeStub_GetCode
+  Memcheck:Leak
+  match-leak-kinds: possible
+  ...
+  fun:_ZN2v88internal8CodeStub7GetCodeEv
+}
+{
+  leak_v8_CreateICUCollator
+  Memcheck:Leak
+  match-leak-kinds: possible
+  ...
+  fun:_ZN2v88internal12_GLOBAL__N_117CreateICUCollatorEPNS0_7IsolateERKN6icu_556LocaleENS0_6HandleINS0_8JSObjectEEE
+}
+{
+  leak_v8_CallInterfaceDescriptorData
+  Memcheck:Leak
+  match-leak-kinds: possible
+  ...
+  fun:_ZN2v88internal27CallInterfaceDescriptorData26InitializePlatformSpecificEiPNS0_8RegisterEPNS0_27PlatformInterfaceDescriptorE
+}
+{
+  leak_v8_InitializePlatformSpecific14
+  Memcheck:Leak
+  match-leak-kinds: possible
+  ...
+  fun:_ZN2v88internal14LoadDescriptor26InitializePlatformSpecificEPNS0_27CallInterfaceDescriptorDataE
+}
+{
+  leak_v8_InitializePlatformSpecific15
+  Memcheck:Leak
+  match-leak-kinds: possible
+  ...
+  fun:_ZN2v88internal15StoreDescriptor26InitializePlatformSpecificEPNS0_27CallInterfaceDescriptorDataE
+}
+{
+  leak_v8_Malloced
+  Memcheck:Leak
+  match-leak-kinds: possible
+  ...
+  fun:_ZN2v88internal8Malloced3NewEm
+}
+{
+  leak_v8_inspector10toString
+  Memcheck:Leak
+  match-leak-kinds: possible
+  ...
+  fun:_ZN12v8_inspector10toString16ERKNS_10StringViewE
+}
