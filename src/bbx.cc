@@ -50,8 +50,8 @@ class BbxWorker : public Nan::AsyncWorker {
     } catch (vips::VError const &err) {
       (baton->err).append(err.what());
     }
-    if (imageType != sharp::ImageType::UNKNOWN) {
-    }
+    // if (imageType != sharp::ImageType::UNKNOWN) {
+    // }
 
     // Clean up
     vips_error_clear();
@@ -122,7 +122,7 @@ NAN_METHOD(bbx) {
 
   // Join queue for worker thread
   Nan::Callback *callback = new Nan::Callback(info[1].As<v8::Function>());
-  Nan::AsyncQueueWorker(new BbxdataWorker(callback, baton, debuglog, buffersToPersist));
+  Nan::AsyncQueueWorker(new BbxWorker(callback, baton, debuglog, buffersToPersist));
 
   // Increment queued task counter
   g_atomic_int_inc(&sharp::counterQueue);

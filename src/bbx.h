@@ -26,13 +26,13 @@ struct BbxBaton {
   int tolerance;
   // Output
   int left;
-  int top;  
+  int top;
   int width;
   int height;
   int density;
   std::string err;
 
-  MetadataBaton():
+  BbxBaton():
     input(nullptr),
     tolerance(10),
     left(0),
