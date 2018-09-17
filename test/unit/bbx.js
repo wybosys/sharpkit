@@ -12,6 +12,7 @@ describe('Image Bbx', function () {
       // assert.strictEqual(2074, bbx.height);
       assert.strictEqual(0, bbx.width);
       assert.strictEqual(0, bbx.height);
+      done();
     });
   });
 });
