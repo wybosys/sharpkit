@@ -46,12 +46,59 @@ class BbxWorker : public Nan::AsyncWorker {
     vips::VImage image;
     sharp::ImageType imageType = sharp::ImageType::UNKNOWN;
     try {
-      std::tie(image, imageType) = OpenInput(baton->input, VIPS_ACCESS_SEQUENTIAL);
+      std::tie(image, imageType) = OpenInput(baton->input, VIPS_ACCESS_RANDOM);
     } catch (vips::VError const &err) {
       (baton->err).append(err.what());
     }
-    // if (imageType != sharp::ImageType::UNKNOWN) {
-    // }
+    if (imageType != sharp::ImageType::UNKNOWN) {
+      using sharp::MaximumImageAlpha;
+      // An equivalent of ImageMagick's -trim in C++ ... automatically remove
+      // "boring" image edges.
+
+      // We use .project to sum the rows and columns of a 0/255 mask image, the first
+      // non-zero row or column is the object edge. We make the mask image with an
+      // amount-different-from-background image plus a threshold.
+
+      // find the value of the pixel at (0, 0) ... we will search for all pixels
+      // significantly different from this
+      std::vector<double> background = image(0, 0);
+
+      double const max = MaximumImageAlpha(image.interpretation());
+
+      // we need to smooth the image, subtract the background from every pixel, take
+      // the absolute value of the difference, then threshold
+      VImage mask = (image.median(3) - background).abs() > (max * baton->tolerance / 100);
+
+      // sum mask rows and columns, then search for the first non-zero sum in each
+      // direction
+      VImage rows;
+      VImage columns = mask.project(&rows);
+
+      VImage profileLeftV;
+      VImage profileLeftH = columns.profile(&profileLeftV);
+
+      VImage profileRightV;
+      VImage profileRightH = columns.fliphor().profile(&profileRightV);
+
+      VImage profileTopV;
+      VImage profileTopH = rows.profile(&profileTopV);
+
+      VImage profileBottomV;
+      VImage profileBottomH = rows.flipver().profile(&profileBottomV);
+
+      int left = static_cast<int>(floor(profileLeftV.min()));
+      int right = columns.width() - static_cast<int>(floor(profileRightV.min()));
+      int top = static_cast<int>(floor(profileTopH.min()));
+      int bottom = rows.height() - static_cast<int>(floor(profileBottomH.min()));
+
+      int width = right - left;
+      int height = bottom - top;
+
+      baton->left = left;
+      baton->top = top;
+      baton->width = width;
+      baton->height = height;
+    }
 
     // Clean up
     vips_error_clear();
@@ -116,6 +163,8 @@ NAN_METHOD(bbx) {
 
   // Input
   baton->input = sharp::CreateInputDescriptor(sharp::AttrAs<v8::Object>(options, "input"), buffersToPersist);
+  if (sharp::HasAttr(options, "tolerance"))
+    baton->tolerance = sharp::AttrTo<int>(options, "tolerance");
 
   // Function to notify of libvips warnings
   Nan::Callback *debuglog = new Nan::Callback(sharp::AttrAs<v8::Function>(options, "debuglog"));
