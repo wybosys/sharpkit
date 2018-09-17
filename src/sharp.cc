@@ -18,6 +18,7 @@
 
 #include "common.h"
 #include "metadata.h"
+#include "bbx.h"
 #include "pipeline.h"
 #include "utilities.h"
 #include "stats.h"
@@ -31,6 +32,8 @@ NAN_MODULE_INIT(init) {
   // Methods available to JavaScript
   Nan::Set(target, Nan::New("metadata").ToLocalChecked(),
     Nan::GetFunction(Nan::New<v8::FunctionTemplate>(metadata)).ToLocalChecked());
+  Nan::Set(target, Nan::New("bbx").ToLocalChecked(),
+    Nan::GetFunction(Nan::New<v8::FunctionTemplate>(bbx)).ToLocalChecked());
   Nan::Set(target, Nan::New("pipeline").ToLocalChecked(),
     Nan::GetFunction(Nan::New<v8::FunctionTemplate>(pipeline)).ToLocalChecked());
   Nan::Set(target, Nan::New("cache").ToLocalChecked(),

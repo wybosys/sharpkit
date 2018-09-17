@@ -91,6 +91,16 @@ declare namespace sharpkit {
          */
         metadata(): Promise<Metadata>;
         /**
+         * Fast access to image bbx.
+         * @returns A sharp instance that can be used to chain operations
+         */
+        bbx(callback: (err: Error, bbx: Bbx) => void): SharpInstance;
+        /**
+         * Fast access to image bbx.
+         * @returns A promise that fulfills with a bbx object.
+         */
+        bbx(): Promise<Bbx>;
+        /**
          * Take a "snapshot" of the Sharp instance, returning a new instance.
          * @returns A sharp instance that can be used to chain operations
          */
@@ -489,6 +499,17 @@ declare namespace sharpkit {
         exif?: Buffer;
         /** Buffer containing raw ICC profile data, if present */
         icc?: Buffer;
+    }
+
+    interface Bbx {
+        /** Number of pixels left */
+        left?: number;
+        /** Number of pixels top */
+        top?: number;
+        /** Number of pixels wide */
+        width?: number;
+        /** Number of pixels high */
+        height?: number;
     }
 
     interface JpegOptions extends OutputOptions {
