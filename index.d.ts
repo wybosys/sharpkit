@@ -92,14 +92,16 @@ declare namespace sharpkit {
         metadata(): Promise<Metadata>;
         /**
          * Fast access to image bbx.
+         * @param tolerance default is 10.
          * @returns A sharp instance that can be used to chain operations
          */
-        bbx(callback: (err: Error, bbx: Bbx) => void): SharpInstance;
+        bbx(tolerance: number, callback: (err: Error, bbx: Bbx) => void): SharpInstance;
         /**
          * Fast access to image bbx.
+         * @param tolerance default is 10.
          * @returns A promise that fulfills with a bbx object.
          */
-        bbx(): Promise<Bbx>;
+        bbx(tolerance?: number): Promise<Bbx>;
         /**
          * Take a "snapshot" of the Sharp instance, returning a new instance.
          * @returns A sharp instance that can be used to chain operations

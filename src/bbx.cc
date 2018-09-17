@@ -96,8 +96,8 @@ class BbxWorker : public Nan::AsyncWorker {
 
       baton->left = left;
       baton->top = top;
-      baton->width = width;
-      baton->height = height;
+      baton->width = width < 0 ? 0 : width;
+      baton->height = height < 0 ? 0 : height;
     }
 
     // Clean up
