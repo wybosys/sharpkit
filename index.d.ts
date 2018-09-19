@@ -103,6 +103,14 @@ declare namespace sharpkit {
          */
         bbx(tolerance?: number): Promise<Bbx>;
         /**
+         * Access to pixel-derived image statistics for every channel in the image.
+         */
+        stats(callback: (err: Error, stats: ChannelStats[]) => void): SharpInstance;
+        /**
+         * Access to pixel-derived image statistics for every channel in the image.
+         */
+        stats(): Promise< ChannelStats[] >;
+        /**
          * Take a "snapshot" of the Sharp instance, returning a new instance.
          * @returns A sharp instance that can be used to chain operations
          */
@@ -730,6 +738,19 @@ declare namespace sharpkit {
         svg: AvailableFormatInfo;
         pdf: AvailableFormatInfo;
         v: AvailableFormatInfo;
+    }
+
+    interface ChannelStats {
+        min: number;
+        max: number;
+        sum: number;
+        squaresSum: number;
+        mean: number;
+        stddev: number;
+        minX: number;
+        minY: number;
+        maxX: number;
+        maxY: number;
     }
 
     interface CacheResult {

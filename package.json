@@ -126,5 +126,6 @@
       "runtime/indentation_namespace",
       "runtime/references"
     ]
-  }
+  },
+  "__npminstall_done": false
 }
