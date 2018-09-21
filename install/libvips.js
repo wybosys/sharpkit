@@ -3,6 +3,7 @@
 const fs = require('fs');
 const os = require('os');
 const path = require('path');
+const download = require('download');
 
 const detectLibc = require('detect-libc');
 const npmLog = require('npmlog');
@@ -47,6 +48,7 @@ try {
     const tmpFile = fs.createWriteStream(tarPathTemp);
     const url = distBaseUrl + tarFilename;
     npmLog.info('sharp', `Downloading ${url}`);
+    /*  
     simpleGet({ url: url, agent: agent() }, function (err, response) {
       if (err) {
         throw err;
@@ -56,6 +58,8 @@ try {
       }
       response.pipe(tmpFile);
     });
+    */
+    download(url).pipe(tmpFile);
     tmpFile.on('close', function () {
       const vendorPath = path.join(__dirname, '..', 'vendor');
       fs.mkdirSync(vendorPath);
