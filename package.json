@@ -1,7 +1,7 @@
 {
   "name": "sharpkit",
   "description": "继承于sharp，提供加速libvips下载，以及扩展功能",
-  "version": "10.30.6",
+  "version": "10.30.7",
   "author": "wybo",
   "homepage": "https://github.com/wybosys/sharpkit",
   "contributors": [

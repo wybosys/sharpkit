@@ -19,11 +19,11 @@ const minimumLibvipsVersion = libvips.minimumLibvipsVersion;
 //const distBaseUrl = process.env.SHARP_DIST_BASE_URL || `https://github.com/lovell/sharp-libvips/releases/download/v${minimumLibvipsVersion}/`;
 var distBaseUrl;
 if (platform() == "win32") {
-  distBaseUrl = "https://coding.net/s/523a0381-aded-4a16-b24c-e01af3313f86?";
+  distBaseUrl = "https://coding.net/api/share/download/1379b3c3-b9d9-4b21-a1bc-1e2c93d0b2ae?";
 } else if(platform() == "darwin") {
-  distBaseUrl = "https://coding.net/s/90d734b1-5043-42c1-95a4-f031af93146f?";
+  distBaseUrl = "https://coding.net/api/share/download/90d734b1-5043-42c1-95a4-f031af93146f?";
 } else {
-  distBaseUrl = "https://coding.net/s/0c5277ce-a680-40d7-9b53-710953a782aa?";
+  distBaseUrl = "https://coding.net/api/share/download/0c5277ce-a680-40d7-9b53-710953a782aa?";
 }
 
 try {
