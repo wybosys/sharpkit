@@ -16,8 +16,7 @@ const libvips = require('../lib/libvips');
 const platform = require('../lib/platform');
 
 const minimumLibvipsVersion = libvips.minimumLibvipsVersion;
-const distBaseUrl = process.env.SHARP_DIST_BASE_URL || `https://github.com/lovell/sharp-libvips/releases/download/v${minimumLibvipsVersion}/`;
-/*
+/* const distBaseUrl = process.env.SHARP_DIST_BASE_URL || `https://github.com/lovell/sharp-libvips/releases/download/v${minimumLibvipsVersion}/`;
 var distBaseUrl;
 if (platform() == "win32") {
   distBaseUrl = "https://coding.net/api/share/download/1379b3c3-b9d9-4b21-a1bc-1e2c93d0b2ae?";
@@ -54,10 +53,11 @@ try {
     }
     // Download to per-process temporary file
     const tarFilename = ['libvips', minimumLibvipsVersion, platform()].join('-') + '.tar.gz';
-    const tarPathTemp = path.join(os.tmpdir(), `${process.pid}-${tarFilename}`);
-    const tmpFile = fs.createWriteStream(tarPathTemp);
-    const url = distBaseUrl + tarFilename;
-    npmLog.info('sharp', `Downloading ${url}`);
+    //const tarPathTemp = path.join(os.tmpdir(), `${process.pid}-${tarFilename}`);
+    const tarPathTemp = 'prebult/' + tarFilename;
+    //const tmpFile = fs.createWriteStream(tarPathTemp);
+    //const url = distBaseUrl + tarFilename;
+    //npmLog.info('sharp', `Downloading ${url}`);
     /*  
     simpleGet({ url: url, agent: agent() }, function (err, response) {
       if (err) {
@@ -69,8 +69,8 @@ try {
       response.pipe(tmpFile);
     });
     */
-    download(url).pipe(tmpFile);
-    tmpFile.on('close', function () {
+    //download(url).pipe(tmpFile);
+    //tmpFile.on('close', function () {
       const vendorPath = path.join(__dirname, '..', 'vendor');
       fs.mkdirSync(vendorPath);
       tar
@@ -87,7 +87,7 @@ try {
         .catch(function (err) {
           throw err;
         });
-    });
+    //});
   }
 } catch (err) {
   npmLog.error('sharp', err.message);
