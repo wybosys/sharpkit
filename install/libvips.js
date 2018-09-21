@@ -16,7 +16,8 @@ const libvips = require('../lib/libvips');
 const platform = require('../lib/platform');
 
 const minimumLibvipsVersion = libvips.minimumLibvipsVersion;
-//const distBaseUrl = process.env.SHARP_DIST_BASE_URL || `https://github.com/lovell/sharp-libvips/releases/download/v${minimumLibvipsVersion}/`;
+const distBaseUrl = process.env.SHARP_DIST_BASE_URL || `https://github.com/lovell/sharp-libvips/releases/download/v${minimumLibvipsVersion}/`;
+/*
 var distBaseUrl;
 if (platform() == "win32") {
   distBaseUrl = "https://coding.net/api/share/download/1379b3c3-b9d9-4b21-a1bc-1e2c93d0b2ae?";
@@ -25,6 +26,7 @@ if (platform() == "win32") {
 } else {
   distBaseUrl = "https://coding.net/api/share/download/0c5277ce-a680-40d7-9b53-710953a782aa?";
 }
+*/
 
 try {
   const useGlobalLibvips = libvips.useGlobalLibvips();
