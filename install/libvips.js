@@ -21,7 +21,7 @@ var distBaseUrl;
 if (platform() == "win32") {
   distBaseUrl = "https://coding.net/s/523a0381-aded-4a16-b24c-e01af3313f86?";
 } else if(platform() == "darwin") {
-  distBaseUrl = "";
+  distBaseUrl = "https://coding.net/s/90d734b1-5043-42c1-95a4-f031af93146f?";
 } else {
   distBaseUrl = "";
 }
