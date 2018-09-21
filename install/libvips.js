@@ -16,7 +16,15 @@ const libvips = require('../lib/libvips');
 const platform = require('../lib/platform');
 
 const minimumLibvipsVersion = libvips.minimumLibvipsVersion;
-const distBaseUrl = process.env.SHARP_DIST_BASE_URL || `https://github.com/lovell/sharp-libvips/releases/download/v${minimumLibvipsVersion}/`;
+//const distBaseUrl = process.env.SHARP_DIST_BASE_URL || `https://github.com/lovell/sharp-libvips/releases/download/v${minimumLibvipsVersion}/`;
+var distBaseUrl;
+if (platform() == "win32") {
+  distBaseUrl = "https://coding.net/s/523a0381-aded-4a16-b24c-e01af3313f86?";
+} else if(platform() == "darwin") {
+  distBaseUrl = "";
+} else {
+  distBaseUrl = "";
+}
 
 try {
   const useGlobalLibvips = libvips.useGlobalLibvips();
