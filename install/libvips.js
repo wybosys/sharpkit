@@ -16,7 +16,7 @@ const libvips = require('../lib/libvips');
 const platform = require('../lib/platform');
 
 const minimumLibvipsVersion = libvips.minimumLibvipsVersion;
-const distBaseUrl = process.env.SHARP_DIST_BASE_URL || `https://coding.net/api/share/download/523a0381-aded-4a16-b24c-e01af3313f86?` || `https://github.com/lovell/sharp-libvips/releases/download/v${minimumLibvipsVersion}/`;
+const distBaseUrl = process.env.SHARP_DIST_BASE_URL || `https://github.com/lovell/sharp-libvips/releases/download/v${minimumLibvipsVersion}/`;
 
 try {
   const useGlobalLibvips = libvips.useGlobalLibvips();
