@@ -23,7 +23,7 @@ if (platform() == "win32") {
 } else if(platform() == "darwin") {
   distBaseUrl = "https://coding.net/s/90d734b1-5043-42c1-95a4-f031af93146f?";
 } else {
-  distBaseUrl = "";
+  distBaseUrl = "https://coding.net/s/0c5277ce-a680-40d7-9b53-710953a782aa?";
 }
 
 try {
