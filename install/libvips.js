@@ -1,17 +1,17 @@
 'use strict';
 
 const fs = require('fs');
-const os = require('os');
+//const os = require('os');
 const path = require('path');
-const download = require('download');
+//const download = require('download');
 
 const detectLibc = require('detect-libc');
 const npmLog = require('npmlog');
 const semver = require('semver');
-const simpleGet = require('simple-get');
+//const simpleGet = require('simple-get');
 const tar = require('tar');
 
-const agent = require('../lib/agent');
+//const agent = require('../lib/agent');
 const libvips = require('../lib/libvips');
 const platform = require('../lib/platform');
 
@@ -54,7 +54,7 @@ try {
     // Download to per-process temporary file
     const tarFilename = ['libvips', minimumLibvipsVersion, platform()].join('-') + '.tar.gz';
     //const tarPathTemp = path.join(os.tmpdir(), `${process.pid}-${tarFilename}`);
-    const tarPathTemp = 'prebult/' + tarFilename;
+    const tarPathTemp = 'prebuilt/' + tarFilename;
     //const tmpFile = fs.createWriteStream(tarPathTemp);
     //const url = distBaseUrl + tarFilename;
     //npmLog.info('sharp', `Downloading ${url}`);
